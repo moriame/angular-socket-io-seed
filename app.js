@@ -4,6 +4,10 @@
  */
 
 var express = require('express'),
+  bodyParser = require('body-parser'),
+  methodOverride = require('method-override'),
+  errorhandler = require('errorhandler'),
+  morgan = require('morgan'),
   routes = require('./routes'),
   api = require('./routes/api'),
   http = require('http'),
@@ -21,15 +25,14 @@ var io = require('socket.io').listen(server);
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
-app.use(express.logger('dev'));
-app.use(express.bodyParser());
-app.use(express.methodOverride());
+app.use(morgan('dev'));
+app.use(bodyParser());
+app.use(methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(app.router);
 
 // development only
 if (app.get('env') === 'development') {
-  app.use(express.errorHandler());
+  app.use(errorhandler());
 }
 
 // production only

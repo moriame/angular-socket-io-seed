@@ -20,6 +20,17 @@ HTML, and let AngularJS take care of interpolation on the browser side._
 
 Clone the angular-socket-io-seed repository and start hacking!
 
+### Installing the app
+
+```shell
+npm install
+```
+
+```shell
+bower install
+```
+
+
 ### Running the app
 
 Runs like a typical express app:
